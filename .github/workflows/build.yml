@@ -41,3 +41,10 @@ jobs:
         docker build -t $ECR_REPOSITORY:$IMAGE_TAG -f docker/app/Dockerfile .
         docker tag $ECR_REPOSITORY:$IMAGE_TAG $REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        
+    - name: Build, tag, and push image to ECR
+      run: |
+        docker build -t nginx -f docker/nginx/Dockerfile .
+        docker tag nginx:latest 545209304056.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+        docker push 545209304056.dkr.ecr.us-east-1.amazonaws.com/nginx:latest
+        
